@@ -1,46 +1,36 @@
-// De urge om alles in de header te maken was groot, Der stond dat je het niet in de body mocht zetten haha.
-var body = document.getElementsByClassName('bgc').item(0);
-var div = document.getElementById('container');
-var btn1 = document.createElement('button');
-var btn2 = document.createElement('button');
-var btn3 = document.createElement('button');
-var btns = [btn1, btn2, btn3]
+// Geef hier aan hvl buttons je wilt aan maken
+var buttons = 30;
+// pak hier een div met de id container uit groendenroodbuttons.html
+var div = document.getElementById('container')
+// 
+var btns = []
 
+// For loop die buttons aan maakt zolang i kleiner is dan buttons
+for (let i = 0; i < buttons; i++) {
+    // met deze line code maak je de buttons aan ne die geef je de data eronder
+    var btn = document.createElement('button');
+    btn.style.backgroundColor = "green";
+    btn.style.fontSize = "2.5em"
+    btn.style.width = "18%"
+    btn.style.height = "3em";
+    // Deze regel hier 2 onder is bedoeld om de tekst in de buttons te zetten dit is de i + 1 (i begint bij 0)
+    // Het is of zo of die regel weg halen en dan bij het buttons invoeren +1 doen
+    btn.innerHTML = i + 1;
+    btns.push(btn)
+    div.appendChild(btn)
+}
+// maak de buttons rood met deze code
+btns.forEach(btn => btn.onclick = x => btn.style.backgroundColor = "red")
 
-body.style.backgroundColor = "grey";
-
-
-div.style.backgroundColor = "white";
-div.style.margin = "0 auto";
+// alle extra div style om het te laten lijken naar het orgineel ontwerp
+div.style.backgroundColor = "grey";
+div.style.width = "50%";
+div.style.margin = "auto";
+div.style.marginTop = "1em";
 div.style.padding = "1em";
-div.style.width = "25%";
+div.style.justifyContent = "space-between"
 div.style.display = "flex";
-div.style.columnGap = "1.5em";
 div.style.flexDirection = "row";
-div.style.justifyContent = "space-between";
-
-div.appendChild(btn1)
-div.appendChild(btn2)
-div.appendChild(btn3)
-
-
-btn1.innerHTML = "irritante knop 1 ";
-btn2.innerHTML = "irritante knop 2 ";
-btn3.innerHTML = "irritante knop 3 ";
-
-btn1.style.backgroundColor = "green";
-btn2.style.backgroundColor = "red";
-btn3.style.backgroundColor = "blue";
-
-btns.forEach(btn => {
-    btn.style.border = "none";
-    btn.style.color = "white";
-    btn.style.width = "10em";
-    btn.style.height = "4em";
-});
-
-btn1.onclick = x => body.style.backgroundColor = "green"
-btn2.onclick = x => body.style.backgroundColor = "red"
-btn3.onclick = x => body.style.backgroundColor = "blue"
-
-
+div.style.flexWrap = "wrap";
+div.style.columnGap = "1em";
+div.style.rowGap = "1em";
