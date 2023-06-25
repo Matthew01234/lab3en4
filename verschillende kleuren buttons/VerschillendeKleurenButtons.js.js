@@ -20,7 +20,25 @@ for (let i = 0; i < buttons; i++) {
     div.appendChild(btn)
 }
 // maak de buttons rood met deze code
-btns.forEach(btn => btn.onclick = x => btn.style.backgroundColor = "red")
+btns.forEach(btn => {
+    let clickCount = 0;
+  
+    btn.onclick = () => {
+      clickCount++;
+  
+      if (clickCount === 1) {
+        btn.style.backgroundColor = 'red';
+      } else if (clickCount === 2) {
+        btn.style.backgroundColor = 'purple';
+      } else if (clickCount === 3) {
+        btn.style.backgroundColor = 'blue';
+      } else if (clickCount === 4) {
+        btn.style.backgroundColor = 'black';
+      } else if (clickCount === 5) {
+        btn.style.display = 'none';
+      }
+    };
+});
 
 // alle extra div style om het te laten lijken naar het orgineel ontwerp
 div.style.backgroundColor = "grey";
