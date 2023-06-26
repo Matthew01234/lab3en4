@@ -58,43 +58,44 @@ var data1 = {
 
 
 
- function displayPersonData(data) {
-    const list = document.createElement('ul');
-  
-    const voornaamElement = document.createElement('li');
-    voornaamElement.innerHTML = `Voornaam: ${data.voornaam}`;
-    list.appendChild(voornaamElement);
-  
-    const achternaamElement = document.createElement('li');
-    achternaamElement.innerHTML = `Achternaam: ${data.achternaam}`;
-    list.appendChild(achternaamElement);
-  
-    const nationaliteitElement = document.createElement('li');
-    nationaliteitElement.innerHTML = `Nationaliteit: ${data.nationaliteit}`;
-    list.appendChild(nationaliteitElement);
-  
-    const leeftijdElement = document.createElement('li');
-    leeftijdElement.innerHTML = `Leeftijd: ${data.leeftijd}`;
-    list.appendChild(leeftijdElement);
-  
-    const gewichtElement = document.createElement('li');
-    gewichtElement.innerHTML = `Gewicht: ${data.gewicht}`;
-    list.appendChild(gewichtElement);
-  
-    document.body.appendChild(list);
-  
-    const lineBreak = document.createElement('hr');
-    document.body.appendChild(lineBreak);
+const personen = [data1, data2, data3, data4, data5, data6, data7, data8];
+let filteredPersonen = [];
+
+// Functie om gegevens van een persoon weer te geven
+function displayPersonData(personen) {
+  const list = document.createElement('ul');
+
+  for (const data of personen) {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      Voornaam: ${data.voornaam}<br>
+      Achternaam: ${data.achternaam}<br>
+      Nationaliteit: ${data.nationaliteit}<br>
+      Leeftijd: ${data.leeftijd}<br>
+      Gewicht: ${data.gewicht}
+    `;
+    list.appendChild(listItem);
   }
 
+  const existingList = document.getElementById('personen-list');
+  if (existingList) {
+    document.body.removeChild(existingList);
+  }
 
-  
-  // Gegevens weergeven voor elke persoon
-  displayPersonData(data1);
-  displayPersonData(data2);
-  displayPersonData(data3);
-  displayPersonData(data4);
-  displayPersonData(data5);
-  displayPersonData(data6);
-  displayPersonData(data7);
-  displayPersonData(data8);
+  list.id = 'personen-list';
+  document.body.appendChild(list);
+}
+
+// Eventhandler voor de bevestigingsknop
+function filterPersonen() {
+  const inputLeeftijd = document.getElementById('leeftijd-input').value;
+  filteredPersonen = personen.filter(data => data.leeftijd > inputLeeftijd);
+  displayPersonData(filteredPersonen);
+}
+
+// Gegevens weergeven voor alle personen
+displayPersonData(personen);
+
+// Bevestigingsknop event listener
+const bevestigKnop = document.getElementById('bevestig-knop');
+bevestigKnop.addEventListener('click', filterPersonen);
